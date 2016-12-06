@@ -4,6 +4,11 @@ defaults: &defaults
   server: &defaults_server
     port: 8080
     host: 0.0.0.0
+  database: &defaults_database
+    user: root
+    protocol: unix
+    address: /tmp/mysql.sock
+    dbname: CimRails_development
 
 development:
   <<: *defaults
@@ -15,6 +20,11 @@ production:
   server:
     <<: *defaults_server
     host: 127.0.0.1
+  database:
+    <<: *defaults_database
+    protocol: tcp
+    address: barcoo-db.clxygquxignv.eu-west-1.rds.amazonaws.com:3306
+    dbname: CimRails_production
 
 test:
   <<: *defaults
@@ -22,3 +32,6 @@ test:
     <<: *defaults_honeybadger
     enabled: false
   logLevel: info
+  database:
+    <<: *defaults_database
+    dbname: CimRails_test

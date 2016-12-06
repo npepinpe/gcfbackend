@@ -9,6 +9,11 @@
 			"Rev": "881bee4e20a5d11a6a88a5667c6f292072ac1963"
 		},
 		{
+			"ImportPath": "github.com/go-sql-driver/mysql",
+			"Comment": "v1.3",
+			"Rev": "a0583e0143b1624142adab07e0e97fe106d99561"
+		},
+		{
 			"ImportPath": "github.com/go-yaml/yaml",
 			"Rev": "a5b47d31c556af34a302ce5d659e6fea44d90de0"
 		},

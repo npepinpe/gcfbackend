@@ -25,7 +25,7 @@ func NewServer(application *app.Application) *Server {
 }
 
 func (server *Server) Start() {
-	address := server.Application.Config.ServerAddress()
+	address := server.Application.Config.Server.Address()
 	server.Application.Logger.Debugf("Starting server at [%s]", address)
 	server.Application.Logger.Fatal(http.ListenAndServe(address, honeybadger.Handler(server.Router)))
 }

@@ -21,6 +21,7 @@ func main() {
 	}
 
 	application.Logger.Debugf("Configured application with environment [%s] and root dir [%s]", application.Environment, application.Root)
+	application.Logger.Debugf("Connected to DB [%s]", application.Config.Database.Dbname)
 
 	// Setup Honeybadger
 	configureHoneybadger(application)
@@ -61,7 +62,7 @@ func initializeApplication() (application *app.Application, err error) {
 
 func configureHoneybadger(application *app.Application) {
 	configuration := honeybadger.Configuration{
-		APIKey: application.Secrets["honeybadger_api_key"],
+		APIKey: application.Secrets[app.ConfigHoneybadgerAPIKey],
 		Env:    application.Environment,
 		Root:   application.Root,
 	}

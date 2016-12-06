@@ -1,10 +1,12 @@
 package app
 
 import (
+	"database/sql"
 	"fmt"
 	"path"
 
 	"github.com/Sirupsen/logrus"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/npepinpe/gcfbackend/utils"
 )
 
@@ -14,6 +16,7 @@ type Application struct {
 	Environment string
 	Logger      *logrus.Logger
 	Secrets     map[string]string
+	Db          *sql.DB
 }
 
 func NewApplication(rootPath string, environment string) (app *Application, err error) {
@@ -38,8 +41,27 @@ func NewApplication(rootPath string, environment string) (app *Application, err 
 	if err != nil {
 		return
 	}
+
 	honeybadgerHook, err := NewHoneybadgerHook(app)
 	app.Logger.Hooks.Add(honeybadgerHook)
+	if err != nil {
+		app.Logger.Warn("Could not configure Honeybadger hook for Logrus")
+		err = nil // continue even if the previous step failed
+	}
+
+	if len(app.Secrets[ConfigDbPasswordKey]) > 0 {
+		app.Config.Database.Password = app.Secrets[ConfigDbPasswordKey]
+	}
+
+	if len(app.Secrets[ConfigDbPasswordKey]) > 0 {
+		app.Config.Database.User = app.Secrets[ConfigDbUsernameKey]
+	}
+	app.Db, err = sql.Open("mysql", app.Config.Database.DataSourceName())
+	err = app.Db.Ping()
+	if err != nil {
+		app.Logger.WithError(err).
+			Error("Could not open a database connection")
+	}
 
 	return
 }
