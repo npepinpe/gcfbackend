@@ -18,3 +18,7 @@ When testing with dependencies, remember to preface all `go` commands with `gode
 godep go build
 godep go test
 ```
+
+# Secrets
+
+You will need a secrets file for development, which you can obtain by pinging any of the devs.
