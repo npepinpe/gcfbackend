@@ -9,5 +9,12 @@ Install [godep](https://github.com/tools/godep), clone the project, then install
 go get github.com/tools/godep
 git clone git@github.com:npepinpe/gcfbackend.git
 cd gcfbackend
-godep update
+godep get
+```
+
+When testing with dependencies, remember to preface all `go` commands with `godep`, e.g.:
+
+```
+godep go build
+godep go test
 ```
