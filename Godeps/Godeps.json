@@ -1,0 +1,50 @@
+{
+	"ImportPath": "github.com/npepinpe/gcfbackend",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v75",
+	"Deps": [
+		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.11.0-25-g881bee4",
+			"Rev": "881bee4e20a5d11a6a88a5667c6f292072ac1963"
+		},
+		{
+			"ImportPath": "github.com/go-yaml/yaml",
+			"Rev": "a5b47d31c556af34a302ce5d659e6fea44d90de0"
+		},
+		{
+			"ImportPath": "github.com/honeybadger-io/honeybadger-go",
+			"Comment": "v.0.2.0",
+			"Rev": "2f2b6d7b0ced7a3e05982a96c0037275cac69a38"
+		},
+		{
+			"ImportPath": "github.com/julienschmidt/httprouter",
+			"Comment": "v1.1-40-g5dd70ee",
+			"Rev": "5dd70ee059943e81987a817fa1a755b11dd119c1"
+		},
+		{
+			"ImportPath": "github.com/pborman/uuid",
+			"Comment": "v1.0-17-g3d4f2ba",
+			"Rev": "3d4f2ba23642d3cfd06bd4b54cf03d99d95c0f1b"
+		},
+		{
+			"ImportPath": "github.com/shirou/gopsutil/internal/common",
+			"Comment": "v2.16.11-2-g449c825",
+			"Rev": "449c8250b0e837d670b2f9e7337e90ad00514b0c"
+		},
+		{
+			"ImportPath": "github.com/shirou/gopsutil/load",
+			"Comment": "v2.16.11-2-g449c825",
+			"Rev": "449c8250b0e837d670b2f9e7337e90ad00514b0c"
+		},
+		{
+			"ImportPath": "github.com/shirou/gopsutil/mem",
+			"Comment": "v2.16.11-2-g449c825",
+			"Rev": "449c8250b0e837d670b2f9e7337e90ad00514b0c"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "478fcf54317e52ab69f40bb4c7a1520288d7f7ea"
+		}
+	]
+}

@@ -1,0 +1,24 @@
+defaults: &defaults
+  honeybadger: &defaults_honeybadger
+    enabled: true
+  server: &defaults_server
+    port: 8080
+    host: 0.0.0.0
+
+development:
+  <<: *defaults
+  logLevel: debug
+
+production:
+  <<: *defaults
+  logLevel: warn
+  server:
+    <<: *defaults_server
+    host: 127.0.0.1
+
+test:
+  <<: *defaults
+  honeybadger:
+    <<: *defaults_honeybadger
+    enabled: false
+  logLevel: info

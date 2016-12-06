@@ -22,3 +22,13 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# Ignore secrets
+config/secrets.yml
+
+# Ignore vendor stuff
+vendor/*
+
+# Ignore the binaries
+debug
+gcfbackend
