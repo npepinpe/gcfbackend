@@ -23,11 +23,6 @@
 			"Rev": "2f2b6d7b0ced7a3e05982a96c0037275cac69a38"
 		},
 		{
-			"ImportPath": "github.com/julienschmidt/httprouter",
-			"Comment": "v1.1-40-g5dd70ee",
-			"Rev": "5dd70ee059943e81987a817fa1a755b11dd119c1"
-		},
-		{
 			"ImportPath": "github.com/pborman/uuid",
 			"Comment": "v1.0-17-g3d4f2ba",
 			"Rev": "3d4f2ba23642d3cfd06bd4b54cf03d99d95c0f1b"

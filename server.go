@@ -1,37 +1,44 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
 
 	"github.com/honeybadger-io/honeybadger-go"
-	"github.com/julienschmidt/httprouter"
 	"github.com/npepinpe/gcfbackend/app"
 )
 
 type Server struct {
 	Application *app.Application
-	Router      *httprouter.Router
+	Router      *http.ServeMux
 }
 
 func NewServer(application *app.Application) *Server {
 	server := Server{
 		Application: application,
-		Router:      httprouter.New(),
+		Router:      http.NewServeMux(),
 	}
-	server.Router.GET("/lbs/beacon_definitions", getDefinitions)
+	server.Router.HandleFunc("/lbs/beacon_definitions", getDefinitions)
 
 	return &server
+}
+
+func (server *Server) ServeHTTP(response http.ResponseWriter, request *http.Request) {
+	context := context.WithValue(request.Context(), "application", server.Application)
+	server.Router.ServeHTTP(response, request.WithContext(context))
 }
 
 func (server *Server) Start() {
 	address := server.Application.Config.Server.Address()
 	server.Application.Logger.Debugf("Starting server at [%s]", address)
-	server.Application.Logger.Fatal(http.ListenAndServe(address, honeybadger.Handler(server.Router)))
+	server.Application.Logger.Fatal(http.ListenAndServe(address, honeybadger.Handler(server)))
 }
 
-func getDefinitions(response http.ResponseWriter, request *http.Request, params httprouter.Params) {
-	data := map[string]interface{}{"a": 1, "b": true}
+func getDefinitions(response http.ResponseWriter, request *http.Request) {
+	application := request.Context().Value("application").(*app.Application)
+
+	data := map[string]interface{}{"a": 1, "b": true, "environment": application.Environment}
 	renderJSON(response, data)
 }
 
